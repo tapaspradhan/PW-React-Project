@@ -1,8 +1,11 @@
 import React from 'react'
 
-function Pokemon() {
+function Pokemon({name,image}) {
   return (
-    <div>Pokemon</div>
+    <div>
+      <div>{name}</div>
+      <div><img src={image}></img></div>
+    </div>
   )
 }
 
