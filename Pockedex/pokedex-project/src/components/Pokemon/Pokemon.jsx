@@ -4,7 +4,7 @@ import "./Pokemon.css"
 function Pokemon({name,image}) {
   return (
     <div className='pokemon'>
-      <div>{name}</div>
+      <div className='pokemon-name'>{name}</div>
       <div><img className='pokemon-image' src={image}></img></div>
     </div>
   )
