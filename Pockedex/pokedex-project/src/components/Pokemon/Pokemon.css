@@ -21,3 +21,6 @@
 .pokemon:hover {
     background-color: beige;
 }
+.link {
+    text-decoration: none;
+}
