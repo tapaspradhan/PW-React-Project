@@ -1,17 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+// import "./PokemonDetails.css"
+
 function PokemonDetails() {
     const {id}=useParams();
     const [pokemon, setPokemon]=useState({})
     async function dowonloadPokemons(){
-        const response = await axios.get(`http://localhost:5173/pokemon/${id}`)
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        console.log(response.data);
         setPokemon({
             name:response.data.name,
             image:response.data.sprites.other.dream_world.front_default,
             weight:response.data.weight,
             height:response.data.height,
-            types:response.data.type.map((t)=>t.type.name)
+            types:response.data.types.map((t)=>t.type.name)
         });
     }
 
@@ -20,12 +23,12 @@ function PokemonDetails() {
     }, [])
   return (
     <div className='pokemon-details-wrapper'>
-        <div className='pokemon-details-name'>Name:{pokemon.name}</div>
         <img className="pokemon-details-image" src={pokemon.image}/>
-        <div>Height:{pokemon.height}</div>
-        <div>Weight:{pokemon.weight}</div>
+        <div className='pokemon-details-name'><span>{pokemon.name}</span></div>
+        <div className='pokemon-details-name'>Height:{pokemon.height}</div>
+        <div className='pokemon-details-name'>Weight:{pokemon.weight}</div>
         <div className="pokemon-details-type">
-            {pokemon.types && pokemon.type.map((t)=> <div key={t}> {t} </div>)}
+            {pokemon.types && pokemon.types.map((t)=> <div key={t}> {t} </div>)}
         </div>
     </div>
   )
